@@ -1,0 +1,25 @@
+#!/bin/bash
+while getopts e:f:d:h: flag
+do
+    case "${flag}" in
+        e) extension=${OPTARG};;
+        f) filename=$OPTARG;;
+    #    d) destiny={$OPTARG};;
+        h) help={$OPTARG};;
+    esac
+done
+
+if [ $extension == "zip" ]; then
+    unzip $filename
+    elif [ $extension == "rar" ]; then
+        unrar x $filename
+    elif [ $extension == "tar" ]; then
+        tar -xvf $filename
+    elif [ $extension == "tar.gz" ]; then
+        tar -zxvf $filename
+    elif [ $extensions == "tar.bz2" ]; then
+        tar -jxvf $filename
+    elif [ $extension == "tar.xz" ]; then
+        tar -xvf $filename
+    else echo "USAGE: unpack -e <extension(zip, rar, tar, tar.gz, tar.xz or tar.bz2> -f <filename>"
+fi
